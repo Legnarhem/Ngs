@@ -23,10 +23,10 @@ class SeqNgs:
         """
         cont_g = 0;
         cont_c = 0;
-        for x in range(0,self.seq_adn.length):
-            if self.seq_adn[x] == 'G':
+        for x in (self.seq_adn):
+            if x == 'G':
                 cont_g += 1
-            if self.seq_adn[x]== 'C':
+            if x == 'C':
                 cont_c += 1
             return ((cont_c + cont_g)/self.seq_adn.length)*100
 
@@ -36,39 +36,25 @@ class SeqNgs:
         :return: (float) con la calidad media de la secuencia
         """
         total = 0
-        for x in range(0,self.seq_qual.length):
-            total = total + self.seq_qual[x]
+        for x in (self.seq_qual):
+            total = total + x
         return total/self.seq_len()
 
     def rev_comp(self):
         """
         Metodo que devuelve la secuencia reversa complementaria de una secuencia de ADN
-
         :return: secuencia reversa complementaria
         """
-
-        # 1.- Obtencion de secuencia reversa
         seq_rev = ''
-
+        #Invertimos la cadena y hacemos su complementaria
         for letter in reversed(self.seq_adn):
-            seq_rev += letter
-
-        # 2.- Obtencion de secuencia complementaria a partir de la reversa
-        seq_rev_comp = ''
-        nuevo_nucleotido = ''
-        for nucleotido in seq_rev:
-            if nucleotido == 'A':
-                nuevo_nucleotido = 'T'
-                seq_rev_comp += nuevo_nucleotido
-            elif nucleotido == 'T':
-                nuevo_nucleotido = 'A'
-                seq_rev_comp += nuevo_nucleotido
-            elif nucleotido == 'C':
-                nuevo_nucleotido = 'G'
-                seq_rev_comp += nuevo_nucleotido
-            elif nucleotido == 'G':
-                nuevo_nucleotido = 'C'
-                seq_rev_comp += nuevo_nucleotido
-
-        return seq_rev_comp
+            if letter == 'A':
+                seq_rev += 'T'
+            elif letter == 'T':
+                seq_rev += 'A'
+            elif letter == 'C':
+                seq_rev += 'G'
+            else:
+                seq_rev += 'C'
+        return seq_rev
 
